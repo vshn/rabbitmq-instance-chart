@@ -81,5 +81,5 @@ spec:
         namespace: {{ .Release.Namespace }}
   serviceAccountRef:
     name: {{ .Release.Name }}-rabbitmq-lb-service-manager
-  template: {{ .Files.Get "files/rabbitmq-lb-service.jsonnet" | quote }}
+  template: {{ tpl (.Files.Get "files/rabbitmq-lb-service.jsonnet") . | quote }}
 {{- end }}

@@ -234,7 +234,7 @@ spec:
       namespace: rabbitmq
   serviceAccountRef:
     name: test-rabbitmq-lb-service-manager
-  template: "local esp = import 'espejote.libsonnet';\nlocal config = import 'rabbitmq-lb-service/config.json';\n\nlocal svcs = esp.context().services;\nassert std.length(svcs) == 1 : 'Expected exactly 1 service in services context';\nlocal svc = svcs[0];\n\n{\n  apiVersion: 'v1',\n  kind: 'Service',\n  metadata: {\n    annotations: std.get(svc.metadata, 'annotations', {}),\n    name: '%s-lb' % svc.metadata.name,\n    namespace: svc.metadata.namespace,\n  },\n  spec: {\n    type: 'LoadBalancer',\n    loadBalancerClass: '%(loadBalancerClass)s' % config,\n    ports: svc.spec.ports,\n    selector: svc.spec.selector,\n  },\n}\n"
+  template: "local esp = import 'espejote.libsonnet';\nlocal config = import \"test-rabbitmq-lb-service/config.json\";\n\nlocal svcs = esp.context().services;\nassert std.length(svcs) == 1 : 'Expected exactly 1 service in services context';\nlocal svc = svcs[0];\n\n{\n  apiVersion: 'v1',\n  kind: 'Service',\n  metadata: {\n    annotations: std.get(svc.metadata, 'annotations', {}),\n    name: '%s-lb' % svc.metadata.name,\n    namespace: svc.metadata.namespace,\n  },\n  spec: {\n    type: 'LoadBalancer',\n    loadBalancerClass: '%(loadBalancerClass)s' % config,\n    ports: svc.spec.ports,\n    selector: svc.spec.selector,\n  },\n}\n"
 ---
 # Source: rabbitmq-instance/templates/prober-alert-rules.yaml
 apiVersion: monitoring.coreos.com/v1

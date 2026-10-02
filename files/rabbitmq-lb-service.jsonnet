@@ -1,5 +1,5 @@
 local esp = import 'espejote.libsonnet';
-local config = import 'rabbitmq-lb-service/config.json';
+local config = import "{{ .Release.Name }}-rabbitmq-lb-service/config.json";
 
 local svcs = esp.context().services;
 assert std.length(svcs) == 1 : 'Expected exactly 1 service in services context';
