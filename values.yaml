@@ -1,6 +1,7 @@
 rabbitmq:
   enabled: true
   name: rabbitmq
+  externalSecret: null
   image:
     registry: docker.io
     image: library/rabbitmq
