@@ -1,5 +1,5 @@
 {{- if .Values.prober.enabled }}
-{{- $connectionSecret := printf "%s-default-user" .Values.rabbitmq.name }}
+{{- $connectionSecret := .Values.rabbitmq.externalSecret | default (printf "%s-default-user" .Values.rabbitmq.name) }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

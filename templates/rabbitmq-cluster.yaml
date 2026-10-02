@@ -40,4 +40,10 @@ spec:
     secretName: {{ .Values.rabbitmq.tls.secretName }}
     disableNonTLSListeners: {{ .Values.rabbitmq.tls.disableNonTLSListeners }}
   {{- end }}
+  {{- if .Values.rabbitmq.externalSecret }}
+  secretBackend:
+    externalSecret:
+      name: {{ .Values.rabbitmq.externalSecret }}
+  {{- end }}
+
 {{- end }}
