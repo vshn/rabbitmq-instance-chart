@@ -46,11 +46,11 @@ metadata:
   namespace: rabbitmq
 roleRef:
   kind: Role
-  name: rabbitmq-lb-service-manager
+  name: test-rabbitmq-lb-service-manager
   apiGroup: rbac.authorization.k8s.io
 subjects:
 - kind: ServiceAccount
-  name: rabbitmq-lb-service-manager
+  name: test-rabbitmq-lb-service-manager
   namespace: rabbitmq
 ---
 # Source: rabbitmq-instance/templates/rbac.yaml
