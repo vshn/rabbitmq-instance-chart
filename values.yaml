@@ -8,6 +8,9 @@ rabbitmq:
     version:
   plugins:
     - rabbitmq_prometheus
+  defaultUser:
+    username: null
+    password: null
   additionalConfig: |
 
   persistence:

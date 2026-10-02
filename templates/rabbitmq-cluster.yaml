@@ -1,4 +1,8 @@
 {{- if .Values.rabbitmq.enabled }}
+{{- $externalSecret := .Values.rabbitmq.externalSecret }}
+{{- if and .Values.rabbitmq.defaultUser.username .Values.rabbitmq.defaultUser.password }}
+  {{- $externalSecret = .Release.Name }}
+{{- end }}
 apiVersion: rabbitmq.com/v1beta1
 kind: RabbitmqCluster
 metadata:
@@ -40,10 +44,10 @@ spec:
     secretName: {{ .Values.rabbitmq.tls.secretName }}
     disableNonTLSListeners: {{ .Values.rabbitmq.tls.disableNonTLSListeners }}
   {{- end }}
-  {{- if .Values.rabbitmq.externalSecret }}
+  {{- if $externalSecret }}
   secretBackend:
     externalSecret:
-      name: {{ .Values.rabbitmq.externalSecret }}
+      name: {{ $externalSecret }}
   {{- end }}
 
 {{- end }}

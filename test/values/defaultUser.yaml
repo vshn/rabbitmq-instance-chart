@@ -1,0 +1,8 @@
+rabbitmq:
+  externalSecret: test-secret
+  defaultUser:
+    username: test-username
+    password: test-password
+prober:
+  enabled: true
+  useTLS: false
