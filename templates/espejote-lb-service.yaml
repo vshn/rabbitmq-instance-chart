@@ -25,11 +25,11 @@ metadata:
   namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
-  name: rabbitmq-lb-service-manager
+  name: {{ .Release.Name }}-rabbitmq-lb-service-manager
   apiGroup: rbac.authorization.k8s.io
 subjects:
   - kind: ServiceAccount
-    name: rabbitmq-lb-service-manager
+    name: {{ .Release.Name }}-rabbitmq-lb-service-manager
     namespace: {{ .Release.Namespace }}
 ---
 apiVersion: espejote.io/v1alpha1
